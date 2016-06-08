@@ -4,5 +4,6 @@ cscope.out
 tags
 vimHighlightFile.vim
 doc
-
-
+*.pyc
+*.vimc
+Doxygen
