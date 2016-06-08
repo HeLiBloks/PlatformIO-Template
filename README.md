@@ -1,4 +1,3 @@
- <!--vim: set ts=4 sw=4 tw=0 foldenable foldmethod=syntax foldclose=all autochdir:-->
 
 extended platformIO Makefile
 ============================
