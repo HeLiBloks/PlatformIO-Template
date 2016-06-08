@@ -13,7 +13,7 @@ upload:
 
 clean:
 	platformio -f -c nvim run --target clean
-	rm -rf ./tags ./cscope.out ./doc
+	rm -rf ./tags ./cscope.out ./doc vimHighlightFile.vim
 	unset $$CSCOPE_DB
 
 program:
@@ -28,7 +28,11 @@ update:
 
 tags:
 	find ./.pioenvs ./lib ./src -type f -regex ".*\(ino\|c\|h\|hpp\|cc\|cpp\)" -print | \
-	ctags -L - --fields=afikmnsStzZl --language-force=C++ --sort=1
+		ctags -L - --fields=afikmnsStzZl --language-force=C++ --sort=1
+
+vimHighlightFile:
+	awk 'BEGIN{printf("syntax keyword Type\t")}\
+			!/^[!]/ {printf("%s ", $$1)}END{print ""}' tags > vimHighlightFile.vim
 
 cscope:
 	find ./.pioenvs ./lib ./src -type f -regex ".*\(ino\|c\|h\|hpp\|cc\|cpp\)" -print | \
@@ -49,4 +53,5 @@ doxygen:
 	sed -i -re '/^PLANTUML_INCLUDE_PATH/  s/=/&"~\/apps\/plantuml\/plantuml.jar"/' Doxygen
 	sed -i -re '/^ABREVIATE_BRIEF/ s/=/&"The $$name class"   "The $$name widget"  "The $$name file"   is  provides  specifies  contains  represents  a  an  the/' Doxygen
 	doxygen Doxygen
+
 
