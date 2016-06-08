@@ -1,6 +1,6 @@
 /*- modeline  {{{
 vim:set et sw=4 ts=4 ft=cpp syntax=arduino foldmarker={{{,}}} foldlevel=0 foldmethod=marker spell:
-     }}} modeline -*/
+    }}} modeline -*/
 
 #include <Wire.h>
 #include <DallasTemperature.h>
@@ -30,7 +30,8 @@ int read_LCD_buttons()
  adc_key_in = analogRead(0);      // read the value from the sensor
  // my buttons when read are centered at these valies: 0, 144, 329, 504, 741
  // we add approx 50 to those values and check to see if we are close
- if (adc_key_in > 1000) return btnNONE; // We make this the 1st option for speed reasons since it will be the most likely result
+ // We make this the 1st option for speed reasons since it will be the most likely result
+ if (adc_key_in > 1000) return btnNONE;
  // For V1.1 us this threshold
  if (adc_key_in < 50)   return btnRIGHT;
  if (adc_key_in < 250)  return btnUP;
@@ -123,22 +124,19 @@ void loop(void)
 
 int i;
 i = i++;
+
 if (i%10 == 0){
   lcd.clear();
   lcd.print("clearing");
   delay(1000);
   lcd.clear();
 }
-
-  sensors.requestTemperatures(); // Read dallas
-  //lcd.clear();
+// Read dallas
+  sensors.requestTemperatures();
   lcd.setCursor(0, 0); // bottom left
-  //lcd.print("Hu ");
-  //lcd.print(DHT11.read(DHT11PIN));
   lcd.print("Ti ");
   lcd.print(sensors.getTempCByIndex(0));
   lcd.print(" C Tu");
-
   lcd.setCursor(0, 1); // bottom left
   //lcd.print("L ");
   //lcd.print (Thermister(analogRead(2)));
