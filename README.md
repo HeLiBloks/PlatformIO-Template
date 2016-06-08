@@ -2,7 +2,7 @@
 extended platformIO Makefile
 ============================
 
-    see [http://docs.platformio.org/en/latest/ide/vim.html](http://docs.platformio.org/en/latest/ide/vim.html)
+see [http://docs.platformio.org/en/latest/ide/vim.html](http://docs.platformio.org/en/latest/ide/vim.html)
 
 ```bash
 make upload
